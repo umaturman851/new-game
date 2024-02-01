@@ -1,36 +1,10 @@
 #include<stdio.h>
 #include<string.h>
 
-int main(void)
+int batle(int *player_gold)
 {
-        char nickname[9];
-        int length;
-	int goblin_gold = 15;
-        int goblin_hp;
-        int player_gold = 0;
-        char action;
-
-        printf("What your name? \r\n");
-        fgets(nickname, sizeof(nickname), stdin);
-
-        length = strlen(nickname);
-        
-        if(nickname[length - 1] =='\n')
-        nickname[length - 1]='\0';
-	else while(getchar() != '\n') ;      
-        
-        printf("Hi, %s \n", nickname);       
-
-        printf("Your attacked by goblin. Press 'A' to atack or 'R' to run \r\n");
-        action = getchar();
-
-        while(action != 'r' && action != 'R')
-        {
-
-
-                if(action == 'a' || action == 'A')
-                {
-                for(goblin_hp = 3; goblin_hp >=0; goblin_hp-- )
+         int goblin_gold = 15;
+          for(int goblin_hp = 3; goblin_hp >=0; goblin_hp-- )
                         {
                                 if(goblin_hp != 3)
                         printf("Your kicke goblin. Hoblin HP: %d\r\n", goblin_hp);
@@ -43,6 +17,47 @@ int main(void)
                         break;
                 }
                             }
+                            return &player_gold;
+
+}
+
+int hello(char *nickname)
+{       
+        int length;
+        char c;
+        printf("What your name? \r\n");
+        fgets(nickname, sizeof(nickname), stdin);
+
+        length = strlen(nickname);
+        
+        if(nickname[length - 1] =='\n')
+        nickname[length - 1]='\0';
+	else while(c = (getchar()) != '\n') ;      
+        
+        printf("Hi, %s \n", nickname); 
+
+        return 0;
+}
+  
+
+int main(void)
+{
+        char nickname[9];
+        int player_gold = 0;
+        char action;
+
+        hello(nickname);
+
+        printf("Your attacked by goblin. Press 'A' to atack or 'R' to run \r\n");
+        action = getchar();
+
+        while(action != 'r' && action != 'R')
+        {
+
+
+                if(action == 'a' || action == 'A')
+                {
+                        batle(player_gold);
 
                 }
 
