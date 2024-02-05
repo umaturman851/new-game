@@ -6,29 +6,36 @@ int main(void)
         char action;
 
         hello(nickname);
+        printf("Hi, %s! What do you whant to do today?"
+		       " Go to the forest to 'h'unt goblyns,"
+		      " or to drink ale in the 't'avern or 'q'uit? \n", nickname); 
 
         printf("Your attacked by goblin. Press 'A' to atack or 'R' to run \r\n");
-        action = getchar();
+        
+	action = getchar(); // A -> [Enter] (don't forget to wipe buffer)
 
-        while(action != 'r' && action != 'R')
+        while(action != 'q' && action != 'Q')
         {
 
 
-                if(action == 'a' || action == 'A')
+                if(action == 'h' || action == 'H')
                 {
                         battle(&player_gold);
 
+                }else
+	        if(action == 't' || action == 'T')
+                {
+                       player_gold = tavern(player_gold);
+
                 }
 
-                printf("Next action ? \n");
+                printf("Next action ? 'H'ant or 'T'un or 'Q'uit \n");
                 getchar(); //clean buffer
                 action = getchar();
 
         }
-                if(action == 'r' || action == 'R')
-                {
-                   printf("You got %d gold! Good job! \r\n", player_gold);
-                }
+	 printf("You earned %d gold! Good job. See you tomorrow!\n", player_gold);
+		
     return 0;
 
 }  
